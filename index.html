@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flashcard Study App</title>
+  <link rel="stylesheet" href="flashcard.css">
+</head>
+<body>
+  <h1>Flashcard Study App</h1>
+
+  <input id="frontInput" placeholder="Front (question)">
+  <input id="backInput" placeholder="Back (answer)">
+  <button onclick="addFlashcard()">Add</button>
+
+  <div>
+    <button onclick="setFilter('all')">All</button>
+
+    <button onclick="setFilter('mastered')">Mastered</button>
+
+    <button onclick="setFilter('unmastered')">Unmastered</button>
+    
+    <button onclick="shuffleCards()">Shuffle</button>
+
+    <button id="deleteModeBtn" onclick="toggleDeleteMode()">Delete Mode: OFF</button>
+
+    <button onclick="openDeleteConfirm()">Delete Selected</button>
+
+    <button onclick="deleteAllCards()">Delete All</button>
+  </div>
+
+  <div class="preset-row">
+    <button class="preset-btn" onclick="loadEasySet()">Pre‑made Questions</button>
+  </div>
+
+  <div id="flashcards"></div>
+
+  <div id="confirmOverlay">
+    <div id="confirmBox">
+      <h3>Delete flashcards?</h3>
+      <p>Are you sure you want to delete the selected flashcards? This cannot be undone.</p>
+      <div id="confirmButtons">
+        <button class="btn btn-cancel" onclick="closeDeleteConfirm()">Cancel</button>
+
+        <button class="btn btn-delete" onclick="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="flashcard.js"></script>
+</body>
+</html>

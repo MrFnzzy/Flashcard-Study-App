@@ -1,0 +1,248 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-align: center;
+  background: radial-gradient(circle at top, #1e293b 0, #020617 60%);
+  color: #e5e7eb;
+  margin: 0;
+  padding: 24px;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 28px;
+  letter-spacing: 0.05em;
+}
+
+.input-row {
+  margin-bottom: 8px;
+}
+
+#frontInput,
+#backInput {
+  width: 260px;
+  padding: 10px 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #4b5563;
+  margin: 4px;
+  box-sizing: border-box;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+#frontInput::placeholder,
+#backInput::placeholder {
+  color: #6b7280;
+}
+
+.controls-row {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 4px 3px;
+  background: #1d4ed8;
+  color: #e5e7eb;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.7);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+#deleteModeBtn {
+  background: #ea580c;
+}
+
+#deleteModeBtn:hover {
+  background: #f97316;
+}
+
+.btn-delete {
+  background: #dc2626;
+}
+
+.btn-delete:hover {
+  background: #ef4444;
+}
+
+.preset-row {
+  margin-bottom: 16px;
+}
+
+.preset-btn {
+  background: #22c55e;
+  color: #022c22;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#flashcards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 8px;
+}
+
+.flashcard {
+  width: 100%;
+  height: 170px;
+  perspective: 1000px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  box-sizing: border-box;
+  padding: 12px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.8);
+}
+
+.front {
+  background: linear-gradient(135deg, #0f172a, #1f2937);
+  border: 1px solid #4b5563;
+  color: #e5e7eb;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: 1px solid #22c55e;
+  color: #022c22;
+}
+
+.mastered {
+  box-shadow: 0 0 0 2px #22c55e, 0 10px 25px rgba(16, 185, 129, 0.4);
+}
+
+.selected-for-delete {
+  box-shadow: 0 0 0 2px #ef4444, 0 10px 25px rgba(248, 113, 113, 0.6);
+}
+
+.select-card {
+  display: none;
+}
+
+.delete-mode .select-card {
+  display: inline-block;
+}
+
+.card.center-start {
+  transition: transform 0.4s ease;
+}
+
+.card.center-shuffle {
+  animation: centerShuffle 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes centerShuffle {
+  0%   { transform: translate(-5px, -5px) rotate(-3deg); }
+  50%  { transform: translate(5px, 5px) rotate(3deg); }
+  100% { transform: translate(-3px, 3px) rotate(-2deg); }
+}
+
+.card.spread {
+  transition: transform 0.6s ease;
+}
+
+#confirmOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+#confirmBox {
+  background: #020617;
+  padding: 20px 22px;
+  border-radius: 14px;
+  max-width: 320px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.9);
+  text-align: left;
+  border: 1px solid #4b5563;
+}
+
+#confirmBox h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+#confirmBox p {
+  margin: 0;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+#confirmButtons {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-cancel {
+  background: #4b5563;
+  color: #e5e7eb;
+}
+
+@media (max-width: 800px) {
+  #flashcards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  #flashcards {
+    grid-template-columns: 1fr;
+  }
+}
